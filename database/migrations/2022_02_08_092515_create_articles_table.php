@@ -18,8 +18,8 @@ class CreateArticlesTable extends Migration
             $table->timestamps();
             $table->string('title');
             $table->text('content');
-            $table->integer('likes');
-            $table->integer('views');
+            $table->unsignedBigInteger('likes');
+            $table->unsignedBigInteger('views');
         });
     }
 

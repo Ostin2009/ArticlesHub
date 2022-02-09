@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\MainController;
 
 
@@ -22,8 +21,7 @@ Route::get('/', 'MainController@home');
 Route::get('/articles', 'MainController@articles')->name('articles');
 
 
-Route::get('/article', function () {
-    return view('article');
-});
+Route::get('/article/{id}', 'MainController@article');
 
-Route::post('/comment/check', 'Maincontroller@comment_check');
+
+Route::post('/comment/check/{id}', 'Maincontroller@comment_check');
