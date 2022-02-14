@@ -14,7 +14,7 @@ class ArticleTagFactory extends Factory
     public function definition()
     {
         return [
-            'article_id' => $this->faker->unique()->numberBetween(1, 30),
+            'article_id' => $this->faker->unique()->numberBetween(1, 20),
             'tag_id' => $this->faker->numberBetween(1, 10)
         ];
     }

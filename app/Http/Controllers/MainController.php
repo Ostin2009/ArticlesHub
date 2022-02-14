@@ -7,12 +7,13 @@ use App\Models\Article;
 use App\Models\ArticleTag;
 use App\Models\Comment;
 use App\Models\Tag;
+use Illuminate\Support\Str;
 
 class MainController extends Controller {
     
     public function home() {
         $articles = new Article();
-        return view('home', ['articles' => $articles->paginate(6)->reverse()]);
+        return view('home', ['articles' => $articles->orderBy('id', 'DESC')->paginate(6)]);
     }
     
     public function articles() {
@@ -20,15 +21,35 @@ class MainController extends Controller {
         return view('articles', ['articles' => $articles->orderBy('id', 'DESC')->paginate(10)]);
     }
     
-    public function article(Article $id) {
+    public function article($slug) {
+        $article = Article::where('slug', $slug)->first();
         $comments = new Comment();
         return view('article', [
-            'article' => $id,
-            'comments' => $id->comments
+            'article' => $article,
+            'comments' => $article->comments
         ]);
     }
 
-    public function comment_check($id, Request $request){
+    public function like_increment($slug) {
+        $article = Article::where('slug', $slug)->first();
+        $article->likes++;
+
+        $article->save();
+
+        return redirect()->route('article', ['slug' => $slug]);
+    }
+
+    public function update($id) {
+        $article = Article::where('id', $id)->first();
+        $article->likes++;
+
+        $article->save();
+
+        return redirect()->route('article', ['slug' => $article->slug]);
+
+    }
+
+    public function comment_check(Request $request){
         //dd($request);
         $valid = $request->validate([
             'subject' => 'required|min:5|max:100',
@@ -36,12 +57,12 @@ class MainController extends Controller {
         ]);
 
         $comment = new Comment();
+        $comment->article_id = $request->input('article_id');
         $comment->subject = $request->input('subject');
         $comment->body = $request->input('body');
-        $comment->article_id = $id;
 
         $comment->save();
 
-        return redirect()->route('articles');
+        return redirect()->route('article', ['slug' => $request->input('article_slug')]);
     }
 }

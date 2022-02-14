@@ -19,7 +19,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return ArticleResource::collection(Article::with('tags', 'comments')->get());
+        return ArticleResource::collection(Article::all()->reverse());
     }
 
     /**
@@ -39,9 +39,9 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Article $article)
     {
-        return new ArticleResource(Article::with('tags', 'comments')->findOrFail($id));
+        return new ArticleResource($article);
     }
 
     /**
@@ -53,7 +53,7 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //  
     }
 
     /**

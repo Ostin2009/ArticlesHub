@@ -21,7 +21,13 @@ Route::get('/', 'MainController@home');
 Route::get('/articles', 'MainController@articles')->name('articles');
 
 
-Route::get('/article/{id}', 'MainController@article');
+Route::get('/articles/{slug}', 'MainController@article')->name('article');
 
 
-Route::post('/comment/check/{id}', 'Maincontroller@comment_check');
+Route::get('/like/increment/{slug}', 'Maincontroller@like_increment');
+
+
+Route::patch('/like/increment/{id}', 'Maincontroller@update');
+
+
+Route::post('/comment/check', 'Maincontroller@comment_check');

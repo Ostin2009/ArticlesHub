@@ -17,6 +17,7 @@ class CreateArticlesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('title');
+            $table->string('slug');
             $table->text('content');
             $table->unsignedBigInteger('likes');
             $table->unsignedBigInteger('views');
