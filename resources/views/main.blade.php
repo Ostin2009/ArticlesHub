@@ -13,7 +13,7 @@
         <div class="col-md-6 px-0">
         <h1 class="display-4 fst-italic">ArticleHub</h1>
         <p class="lead my-3">most cool stories here</p>
-        <p class="lead mb-0"><a href="/home" class="text-white fw-bold">Login or Register</a></p>
+        <p class="lead mb-0"><a href="/login" class="text-white fw-bold">Login</a> or <a href="/register" class="text-white fw-bold">Register</a></p>
         <p class="lead mb-0"><a href="/user/articles" class="text-white fw-bold">My Articles</a></p>        
         </div>
     </div>

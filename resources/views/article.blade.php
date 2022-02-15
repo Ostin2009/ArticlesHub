@@ -16,13 +16,13 @@
         <h1>{{ $article->title }}</h1>
         <p>{{ $article->content }}</p>
         <div class="row">
-            <p><a class="likes" href="/like/increment/{{ $article->slug }}">Лайки:</a> {{ $article->likes }}</p>
+            <p>Лайки: {{ $article->likes }}</p>
             <form action="/like/increment/{{ $article->id }}" method="post">
                 @csrf
                 @method('PATCH')
                 <button type="submit" class="btn btn-success">Лайкнуть</button>
             </form>
-            <p><a class="views" href="#">Просмотры:</a> {{ $article->views }}</p>
+            <p>Просмотры: {{ $article->views }}</p>
         </div>
     </div>
     <div class="container">
@@ -36,9 +36,13 @@
                     @endforeach
                 </ul>
             </div>
+        @else
+            <div class="alert">
+                <p>Ваше сообщение успешно отправлено</p>
+            </div>
         @endif
 
-        <form action="/comment/check" method="post">
+        <form action="/comment/check" method="post" class="comment-send">
             @csrf
             <input type="hidden" name="article_id" id="article_id" value='{{ $article->id }}'>
             <input type="hidden" name="article_slug" id="article_slug" value='{{ $article->slug }}'>
@@ -46,6 +50,7 @@
             <textarea name="body" id="body" placeholder="Текст сообщения" class="form-control"></textarea><br>
             <button type="submit" class="btn btn-success">Отправить</button>
         </form>
+
     </div>
     <div class="container">
         <h1>Отзывы к статьe</h1>
@@ -60,13 +65,16 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function(){
-            $('.likes').click(function(){
-                console.log("IT WORKS")
+            $('.comment-send').children('.btn').click(function(){
+                $('.comment-send, .plug').toggleClass('.d-none')
+
             });
 
             $('.views').click(function(){
                 console.log("IT WORKS")
             });
+
+
         });
     </script>
 @endsection

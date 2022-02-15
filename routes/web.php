@@ -31,13 +31,13 @@ Route::get('/articles/{slug}', 'MainController@article')->name('article');
 Route::get('/user/articles/{slug}', 'MainController@article')->middleware('auth');
 
 
-Route::get('/like/increment/{slug}', 'MainController@like_increment');
+Route::get('/view/increment/{slug}', 'MainController@view_increment');
 
 
-Route::patch('/like/increment/{id}', 'MainController@update');
+Route::patch('/like/increment/{id}', 'MainController@update')->middleware('auth');
 
 
-Route::post('/comment/check', 'CommenController@comment_check');
+Route::post('/comment/check', 'CommentController@comment_check');
 
 
 Auth::routes();

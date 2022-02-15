@@ -37,13 +37,13 @@ class MainController extends Controller {
         ]);
     }
 
-    public function like_increment($slug) {
+    public function view_increment($slug) {
         $article = Article::where('slug', $slug)->first();
-        $article->likes++;
+        $article->views++;
 
         $article->save();
 
-        return redirect()->route('article', ['slug' => $slug]);
+        return redirect()->back();
     }
 
     public function update($id) {
@@ -52,7 +52,7 @@ class MainController extends Controller {
 
         $article->save();
 
-        return redirect()->route('article', ['slug' => $article->slug]);
+        return redirect()->back();
 
     }
 }
