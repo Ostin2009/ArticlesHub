@@ -8,12 +8,13 @@ use App\Models\ArticleTag;
 use App\Models\Comment;
 use App\Models\Tag;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class MainController extends Controller {
     
-    public function home() {
+    public function main() {
         $articles = new Article();
-        return view('home', ['articles' => $articles->orderBy('id', 'DESC')->paginate(6)]);
+        return view('main', ['articles' => $articles->orderBy('id', 'DESC')->paginate(6)]);
     }
     
     public function articles() {
@@ -21,6 +22,12 @@ class MainController extends Controller {
         return view('articles', ['articles' => $articles->orderBy('id', 'DESC')->paginate(10)]);
     }
     
+    public function user_articles() {
+        $userId = Auth::id();
+        $articles = new Article();
+        return view('articles', ['articles' => $articles->where('user_id', '=', $userId)->orderBy('id', 'DESC')->paginate(10)]);
+    }
+
     public function article($slug) {
         $article = Article::where('slug', $slug)->first();
         $comments = new Comment();

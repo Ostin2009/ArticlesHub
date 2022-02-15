@@ -15,7 +15,7 @@
             </a>
             
             <ul class="nav nav-pills">
-                <li class="nav-item"><a href="/" class="nav-link @yield('home_pointer')" >Главная страница</a></li>
+                <li class="nav-item"><a href="/" class="nav-link @yield('main_pointer')" >Главная страница</a></li>
                 <li class="nav-item"><a href="/articles" class="nav-link @yield('articles_pointer')">Каталог статей</a></li>
             </ul>
         </header>

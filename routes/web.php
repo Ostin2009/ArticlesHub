@@ -16,13 +16,19 @@ use App\Http\Controllers\CommentController;
 |
 */
 
-Route::get('/', 'MainController@home');
+Route::get('/', 'MainController@main');
 
 
 Route::get('/articles', 'MainController@articles')->name('articles');
 
 
+Route::get('/user/articles', 'MainController@user_articles')->middleware('auth');
+
+
 Route::get('/articles/{slug}', 'MainController@article')->name('article');
+
+
+Route::get('/user/articles/{slug}', 'MainController@article')->middleware('auth');
 
 
 Route::get('/like/increment/{slug}', 'MainController@like_increment');
@@ -32,3 +38,9 @@ Route::patch('/like/increment/{id}', 'MainController@update');
 
 
 Route::post('/comment/check', 'CommenController@comment_check');
+
+
+Auth::routes();
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

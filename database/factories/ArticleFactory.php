@@ -17,11 +17,12 @@ class ArticleFactory extends Factory
         $title = $this->faker->unique()->sentence(5, true);
 
         return [
+        'user_id' => $this->faker->numberBetween(1, 5),
         'title' => $title,
         'slug' => Str::slug($title, '-'),
         'content' => $this->faker->realText(350),
         'likes' => $this->faker->numberBetween(1, 500),
-        'views' => $this->faker->numberBetween(20, 1000)
+        'views' => $this->faker->numberBetween(20, 1000),
         ];
     }
 }

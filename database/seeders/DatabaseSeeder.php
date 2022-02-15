@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use App\Models\Article;
 use App\Models\Comment;
 use App\Models\Tag;
@@ -17,7 +18,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        User::factory(5)->create();
         Article::factory(20)->create();
         Comment::factory(35)->create();
         Tag::factory(10)->create();
