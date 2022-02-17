@@ -3,6 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
+
+
 
 class CommentStoreRequest extends FormRequest
 {
@@ -28,5 +32,10 @@ class CommentStoreRequest extends FormRequest
             'body' => 'required|min:10|max:500',
             'article_id' => 'required'
         ];
+    }
+
+    protected function failedValidation(Validator $validator) 
+    { 
+        throw new HttpResponseException(response()->json($validator->errors(), 400));
     }
 }

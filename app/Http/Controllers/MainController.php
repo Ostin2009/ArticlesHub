@@ -37,8 +37,8 @@ class MainController extends Controller {
         ]);
     }
 
-    public function view_increment($slug) {
-        $article = Article::where('slug', $slug)->first();
+    public function view_increment($id) {
+        $article = Article::where('id', $id)->first();
         $article->views++;
 
         $article->save();
@@ -46,7 +46,7 @@ class MainController extends Controller {
         return redirect()->back();
     }
 
-    public function update($id) {
+    public function like_increment($id) {
         $article = Article::where('id', $id)->first();
         $article->likes++;
 
