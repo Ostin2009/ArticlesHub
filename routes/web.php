@@ -31,7 +31,7 @@ Route::get('/articles/{slug}', 'MainController@article')->name('article');
 Route::get('/user/articles/{slug}', 'MainController@article')->middleware('auth');
 
 
-Route::get('/view/increment/{id}', 'MainController@view_increment');
+Route::patch('/view/increment/{id}', 'MainController@view_increment');
 
 
 Route::patch('/like/increment/{id}', 'MainController@like_increment')->middleware('auth');

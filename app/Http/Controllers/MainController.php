@@ -43,7 +43,7 @@ class MainController extends Controller {
 
         $article->save();
 
-        return redirect()->back();
+        return $article->views;
     }
 
     public function like_increment($id) {
@@ -52,7 +52,7 @@ class MainController extends Controller {
 
         $article->save();
 
-        return redirect()->back();
+        return $article->likes;
 
     }
 }

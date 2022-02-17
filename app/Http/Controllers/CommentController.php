@@ -21,6 +21,6 @@ class CommentController extends Controller
 
         $comment->save();
 
-        return redirect()->route('article', ['slug' => $request->input('article_slug')]);
+        return $comment;
     }
 }
